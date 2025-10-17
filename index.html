@@ -97,10 +97,22 @@
             text-shadow: 0 0 5px var(--color-accent-light);
         }
 
+        /* Avatar Styling (NEW) */
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* Makes it circular */
+            object-fit: cover;
+            margin: 0 auto 2rem; /* Centers it and adds margin below */
+            display: block; /* Ensures centering works */
+            border: 6px solid var(--color-primary); /* White border for contrast */
+            box-shadow: 0 0 0 4px var(--color-accent-light), var(--shadow-soft); /* Gold ring and soft shadow */
+        }
+
         /* Hero Section */
         .hero {
             background: var(--gradient-main); /* Subtle light gradient */
-            padding: 8rem 2rem;
+            padding: 6rem 2rem 8rem 2rem; /* Adjusted top padding to accommodate the avatar */
             text-align: center;
             border-bottom-left-radius: 50% 10%;
             border-bottom-right-radius: 50% 10%;
@@ -313,6 +325,12 @@
     <main>
         <!-- Hero Section -->
         <section class="hero" id="home">
+            <!-- NEW AVATAR IMAGE -->
+            <img 
+                src="https://raw.githubusercontent.com/nbellare/graph-ai-portfolio/main/Nita%20Thailand%20copy.jpeg" 
+                alt="Professional Profile Avatar" 
+                class="avatar"
+            >
             <h1>Generative AI for Work & Research</h1>
             <p>Portfolio Showcase by a Global Public Health Professional</p>
             <a href="#submissions" class="cta-button">View My Work</a>

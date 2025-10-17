@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generative AI for Work & Research Portfolio</title>
+    <!-- Load Nunito font from Google Fonts (Replaced Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset and Global Styles */
+        :root {
+            /* UPDATED FOR LIGHT THEME */
+            --color-dark: #f4f4f4; /* Light Grey Background */
+            --color-primary: #ffffff; /* White Card/Container Background */
+            
+            /* GOLD ACCENTS remain the same */
+            --color-accent-light: #FFC72C; /* Vibrant Gold */
+            --color-accent-dark: #C69C00; /* Deep Gold */
+            
+            /* TEXT COLORS UPDATED FOR CONTRAST ON LIGHT BACKGROUND */
+            --color-text-dark: #333333; 
+            --color-text-dim: #666666;
+            
+            /* SUBTLE LIGHT GRADIENT for Hero */
+            --gradient-main: linear-gradient(135deg, #e0eafc 0%, #ffffff 100%);
+            --gradient-accent: linear-gradient(45deg, var(--color-accent-light), var(--color-accent-dark));
+            
+            /* SHADOWS UPDATED FOR SUBTLETY ON LIGHT BACKGROUND */
+            --shadow-soft: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* Applied light grey background and dark text color */
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--color-dark);
+            color: var(--color-text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Header and Navigation */
+        header {
+            background: var(--color-primary); /* White header background */
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; 
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 3px rgba(198, 156, 0, 0.3); 
+            margin-top: 0.3rem; 
+        }
+
+        /* --- NAVIGATION LINKS STACKED VERTICALLY --- */
+        .nav-links {
+            display: flex;
+            flex-direction: column; 
+            align-items: flex-end; 
+        }
+        
+        .nav-links a {
+            color: var(--color-text-dim); /* Darkened links for contrast */
+            text-decoration: none;
+            margin-left: 0; 
+            margin-top: 0.25rem;
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+            transition: color 0.3s, background 0.3s, padding 0.3s;
+            padding: 0.1rem 0; 
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-text-dark);
+            text-shadow: 0 0 5px var(--color-accent-light);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-main); /* Subtle light gradient */
+            padding: 8rem 2rem;
+            text-align: center;
+            border-bottom-left-radius: 50% 10%;
+            border-bottom-right-radius: 50% 10%;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            color: var(--color-text-dim);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--gradient-accent);
+            color: var(--color-primary); /* White text on gold button */
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 20px rgba(198, 156, 0, 0.3); /* Gold shadow for CTA */
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 199, 44, 0.5);
+        }
+
+        /* General Section Styles */
+        section {
+            max-width: 1200px;
+            margin: 5rem auto;
+            padding: 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--color-text-dark); /* Dark text color */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-accent);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--color-primary); /* White Card background */
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--color-accent-dark); /* Gold heading */
+            border-bottom: 2px solid var(--color-accent-light);
+            padding-bottom: 0.5rem;
+        }
+
+        .card p {
+            color: var(--color-text-dim);
+        }
+        
+        /* About Me specific styling */
+        #about-me .card {
+            background: var(--color-primary); /* White background for focus */
+            border: 1px solid #ddd;
+        }
+
+        /* Weekly Submissions */
+        .submissions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .submission-item {
+            background-color: var(--color-primary);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-soft);
+            text-align: center;
+            border-left: 5px solid var(--color-accent-light);
+        }
+
+        .submission-item h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-text-dark);
+        }
+
+        .submission-item p {
+            color: var(--color-text-dim);
+            margin-bottom: 1rem;
+        }
+
+        .submission-link {
+            display: inline-block;
+            color: var(--color-accent-dark); /* Dark gold link */
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .submission-link:hover {
+            color: var(--color-accent-light);
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-primary); /* White footer */
+            color: var(--color-text-dim);
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 5rem;
+            border-top: 1px solid #ddd;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (min-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            /* On mobile, we still use a horizontal alignment, but compact */
+            .nav-links {
+                flex-direction: row; 
+                align-items: center;
+                margin-top: 1rem;
+            }
+            .nav-links a {
+                margin: 0 0.5rem;
+            }
+
+            nav {
+                flex-direction: column;
+                padding: 1rem;
+                align-items: center;
+            }
+            .logo {
+                margin-bottom: 0.5rem;
+            }
+            .hero {
+                padding: 5rem 1rem;
+            }
+            section {
+                margin: 3rem auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">AI Portfolio</div>
+            <div class="nav-links">
+                <a href="#about-me">About Me</a>
+                <a href="#about-course">The Course</a>
+                <a href="#submissions">Submissions</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <h1>Generative AI for Work & Research</h1>
+            <p>Portfolio Showcase by a Global Public Health Professional</p>
+            <a href="#submissions" class="cta-button">View My Work</a>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about-me">
+            <h2 class="section-title">About Me</h2>
+            <div class="card">
+                <!-- UPDATED TEXT: Combined both sections into a single <p> tag, inserting a <br><br> for a clean line break. -->
+                <p>Global health professional with extensive experience in programme and project management, coordinating multi-country programmes focused on underserved populations in low- and middle-income countries across Africa and Latin America. Proven experience supporting the full grant cycle—from proposal and workplan development to implementation tracking, financial administration, and donor reporting.
+                <br><br>Strong track record coordinating with global health organizations, national agencies, and community partners across multicultural and interdisciplinary teams. Skilled communicator adept at engaging stakeholder and partners, managing multicultural, interdisciplinary teams, contributing to project impact and global and national policy.</p>
+            </div>
+        </section>
+
+        <!-- About the Course Section -->
+        <section id="about-course">
+            <h2 class="section-title">Generative AI for Work & Research</h2>
+            <div class="about-content">
+                <div class="card">
+                    <h3>Course Focus</h3>
+                    <p>This course focuses on integrating cutting-edge Generative AI technologies, such as Large Language Models (LLMs) and diffusion models, into high-impact professional workflows and rigorous academic research.</p>
+                </div>
+                <div class="card">
+                    <h3>Key Applications</h3>
+                    <p>The curriculum explores practical applications for tasks such as **complex document synthesis**, **automated report drafting**, **systematic literature review pre-screening**, and advanced data pattern identification, specifically tailored for fields like global public health.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Weekly Submissions Section -->
+        <section id="submissions">
+            <h2 class="section-title">My Weekly Submissions</h2>
+            <div class="submissions-grid">
+                
+                <div class="submission-item">
+                    <h4>Week 1: AI for Literature Synthesis</h4>
+                    <p>Prompt engineering for summarizing complex public health reports and academic papers.</p>
+                    <a href="#" class="submission-link">View Submission (Placeholder) &rarr;</a>
+                </div>
+
+                <div class="submission-item">
+                    <h4>Week 2: Automated Report Drafting</h4>
+                    <p>Generating draft M&E sections and funding proposal narratives using structured data inputs.</p>
+                    <a href="#" class="submission-link">View Submission (Placeholder) &rarr;</a>
+                </div>
+
+                <div class="submission-item">
+                    <h4>Week 3: Multilingual Communication AI</h4>
+                    <p>Leveraging AI for accurate, context-aware translations and communication across Francophone teams.</p>
+                    <a href="#" class="submission-link">View Submission (Placeholder) &rarr;</a>
+                </div>
+
+                <div class="submission-item">
+                    <h4>Week 4: Ethical AI in Global Health</h4>
+                    <p>Analysis of bias and fairness in LLM outputs when applied to underserved populations.</p>
+                    <a href="#" class="submission-link">View Submission (Placeholder) &rarr;</a>
+                </div>
+
+                <div class="submission-item">
+                    <h4>Week 5: Workflow Automation Prototype</h4>
+                    <p>Design of an AI-driven script to manage and track project follow-up activities.</p>
+                    <a href="#" class="submission-link">View Submission (Placeholder) &rarr;</a>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- Contact Section (Non-functional, as requested) -->
+        <section id="contact">
+            <h2 class="section-title">Contact & Collaboration</h2>
+            <div class="card" style="text-align: center;">
+                <p style="font-size: 1.1rem; color: var(--color-text-dark);">Interested in discussing Generative AI applications in public health? Connect with me via LinkedIn or other professional channels.</p>
+                <p style="margin-top: 1rem; color: var(--color-accent-dark);">**Note: Contact details are omitted to avoid spam, per request.**</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Generative AI Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                // Check if the target is just '#' (which should do nothing or go to top)
+                if (this.getAttribute('href') === '#') return;
+                
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    // Get the fixed header height to offset the scroll position
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - headerHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
